@@ -27,25 +27,12 @@ import Section from "./Section.astro"
   />
 </Section>
 
-<script>
-  function isEdge() {
-    if (
-      navigator.userAgent.indexOf("Edge") > -1 ||
-      navigator.userAgent.indexOf("Edg") > -1
-    ) {
-      return true
-    } else {
-      return false
-    }
-  }
+<script type="module">
+  import { isEdge } from "../utils/detectEdge";
 
-  let imageElement = document.querySelector(
+  const imageElement = document.querySelector(
     "#bg-image-accessories"
-  ) as HTMLImageElement
+  ) as HTMLImageElement;
 
-  if (isEdge()) {
-    imageElement.src = "accessories.webp"
-  } else {
-    imageElement.src = "accessories.avif"
-  }
+  imageElement.src = isEdge() ? "accessories.webp" : "accessories.avif";
 </script>

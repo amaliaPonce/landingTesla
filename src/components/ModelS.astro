@@ -32,23 +32,12 @@ import Section from "./Section.astro";
   />
 </Section>
 
-<script>
-  function isEdge() {
-    if (
-      navigator.userAgent.indexOf("Edge") > -1 ||
-      navigator.userAgent.indexOf("Edg") > -1
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+<script type="module">
+  import { isEdge } from "../utils/detectEdge";
 
-  let imageElement = document.querySelector("#bg-image-models") as HTMLImageElement; // TypeScript
+  const imageElement = document.querySelector(
+    "#bg-image-models"
+  ) as HTMLImageElement;
 
-  if (isEdge()) {
-    imageElement.src = "model-s.webp";
-  } else {
-    imageElement.src = "model-s.avif";
-  }
+  imageElement.src = isEdge() ? "model-s.webp" : "model-s.avif";
 </script>
